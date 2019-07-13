@@ -9,7 +9,7 @@
 import UIKit
 import SDWebImage
 
-class PhotosTableViewController: UITableViewController, UISearchBarDelegate , PhotosPresenterDelegate {
+class PhotosTableViewController: UITableViewController, UISearchBarDelegate, PresenterDelegate {
 
     var searchText : String = ""
     let searchController = UISearchController(searchResultsController: nil)
@@ -61,13 +61,13 @@ class PhotosTableViewController: UITableViewController, UISearchBarDelegate , Ph
         
         if (indexPath.row == self.photosPresenter.currentCount) {
             let loadingCell = tableView.dequeueReusableCell(withIdentifier: "LoadingCell", for: indexPath)
-                as! LoadingCell
+                as! LoadingTableViewCell
             loadingCell.activityIndicator.startAnimating()
             return loadingCell
         }
         
         let flickrPhotoCell = tableView.dequeueReusableCell(withIdentifier: "FlickrPhotoCell", for: indexPath)
-            as! FlickrPhotoCell
+            as! FlickrPhotoTableViewCell
 
         flickrPhotoCell.nameLabel.text = self.photosPresenter.photo(at: indexPath.row).title
         flickrPhotoCell.flickrImage.sd_setImage(with: self.photosPresenter.photo(at: indexPath.row).photoUrl(), placeholderImage: UIImage(named: "sand-clock") )

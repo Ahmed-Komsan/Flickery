@@ -10,40 +10,6 @@ import Foundation
 
 import Alamofire
 
-struct Constants {
-    
-    static let photoSearchMethod = "flickr.photos.search"
-    static let groupSearchMethod = "flickr.groups.search"
-    
-    struct FlickrURLParams {
-        static let APIScheme = "https"
-        static let APIHost = "api.flickr.com"
-        static let APIPath = "/services/rest"
-    }
-    
-    struct FlickrAPIKeys {
-        static let SearchMethod = "method"
-        static let APIKey = "api_key"
-        static let Extras = "extras"
-        static let ResponseFormat = "format"
-        static let DisableJSONCallback = "nojsoncallback"
-        static let SafeSearch = "safe_search"
-        static let PerPage = "per_page"
-        static let Text = "text"
-        static let Page = "page"
-    }
-    
-    struct FlickrAPIValues {
-        static let APIKey = "67ac40e8f2d70f38a4ee9dd473d754cd"
-        static let ResponseFormat = "json"
-        static let DisableJSONCallback = "1"
-        static let MediumURL = "url_m"
-        static let SafeSearch = "1"
-        static let PerPage = "20"
-    }
-
-}
-
 class FlickrNetworkManager {
     
     let appAPIKey = "67ac40e8f2d70f38a4ee9dd473d754cd"
@@ -83,7 +49,7 @@ class FlickrNetworkManager {
                 }
                 
                 guard let jsonData = try? JSONSerialization.data(withJSONObject: responseDictionary) else {
-                    completion(Result.failure( NetworkError.invalidData))
+                    completion(Result.failure( NetworkError.jsonConversionFailure))
                     return
                 }
                 
@@ -103,7 +69,7 @@ class FlickrNetworkManager {
     
     // MARK:- Helper
     
-    private func flickrURLFromParameters(searchMethod : String, searchString: String, page:Int) -> URL {
+    func flickrURLFromParameters(searchMethod : String, searchString: String, page:Int) -> URL {
     
         // Build base URL
         var components = URLComponents()

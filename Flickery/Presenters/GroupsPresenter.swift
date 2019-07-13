@@ -8,17 +8,10 @@
 
 import Foundation
 
-
-protocol GroupsPresenterDelegate: class {
-    func onFetchCompleted(with newPhotosCount: Int)
-    func onFetchFailed(with reason: String)
-}
-
-
 class GroupsPresenter {
     
     var networkManager : FlickrNetworkManager?
-    private weak var delegate: GroupsPresenterDelegate?
+    private weak var delegate: PresenterDelegate?
     
     var groups: [Group] = []
     private var currentPage = 1
@@ -26,7 +19,7 @@ class GroupsPresenter {
     private var isFetchInProgress = false
     private var currentSearchText = ""
     
-    convenience init(delegate: GroupsPresenterDelegate) {
+    convenience init(delegate: PresenterDelegate) {
         self.init()
         self.networkManager = FlickrNetworkManager()
         self.delegate = delegate

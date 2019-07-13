@@ -9,7 +9,7 @@
 import UIKit
 import SDWebImage
 
-class GroupsCollectionViewController: UICollectionViewController, GroupsPresenterDelegate {
+class GroupsCollectionViewController: UICollectionViewController, PresenterDelegate {
     
     // MARK: - Properties
     private let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0,right: 20.0)
@@ -42,14 +42,14 @@ class GroupsCollectionViewController: UICollectionViewController, GroupsPresente
         
         if (indexPath.row == self.groupsPresenter.currentCount) {
             let loadingCell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionLoadingCell", for: indexPath)
-                as! CollectionLoadingCell
+                as! LoadingCollectionViewCell
             loadingCell.activityIndicator.startAnimating()
             return loadingCell
         }
         
         
         let flickrGroupCell = collectionView.dequeueReusableCell(withReuseIdentifier: "FlickrGroupCell",
-                                                      for: indexPath) as! FlickrGroupCell
+                                                      for: indexPath) as! FlickrGroupCollectionViewCell
         flickrGroupCell.backgroundColor = .white
         flickrGroupCell.flickrImage.sd_setImage(with: self.groupsPresenter.group(at: indexPath.row).photoUrl(), placeholderImage: UIImage(named: "sand-clock") )
         flickrGroupCell.nameLabel.text = self.groupsPresenter.group(at: indexPath.row).name

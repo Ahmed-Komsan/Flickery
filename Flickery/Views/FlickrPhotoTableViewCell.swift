@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FlickrPhotoCell: UITableViewCell {
+class FlickrPhotoTableViewCell: UITableViewCell {
     
     @IBOutlet weak var flickrImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!

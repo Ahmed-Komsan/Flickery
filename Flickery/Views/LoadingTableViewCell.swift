@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoadingCell: UITableViewCell {
+class LoadingTableViewCell: UITableViewCell {
 
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     

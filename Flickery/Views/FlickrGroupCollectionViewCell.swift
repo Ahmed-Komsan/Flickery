@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FlickrGroupCell: UICollectionViewCell {
+class FlickrGroupCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var flickrImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
